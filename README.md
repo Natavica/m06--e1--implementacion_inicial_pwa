@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Módulo 03: Taller 02
 ## Taller: Integración de Funcionalidades Básicas de JavaScript en el Sitio Web del Hospital
 
@@ -121,3 +122,7 @@ Este proyecto implementa un sistema de validación interactiva para recolectar d
 ### Mensajes dinámicos
 - La función `pedirDato` reutiliza tanto el mensaje como la validación pasada como argumentos.
 - **Ventaja:** Es flexible para diferentes tipos de datos.
+=======
+# m06--e1--implementacion_inicial_pwa
+>>>>>>> origin/main
+# -m06--e1--implementacion_inicial_pwa
