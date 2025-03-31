@@ -2,10 +2,10 @@
     "name": "Hospital Web App",
     "short_name": "HospitalApp",
     "description": "Aplicación web del hospital para gestión de citas y consultas.",
-    "start_url": "/index.html",
+    "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#007bff",
+    "background_color": "rgb(75, 166, 166)",
+    "theme_color": "rgb(75, 166, 166)",
     "icons": [
       {
         "src": "/assets/images/hospital.jpeg",
@@ -37,6 +37,19 @@
         "sizes": "200x200",
         "type": "image/png"
       }
-    ]
+    ],
+    "screenshots": [
+    {
+      "src": "/assets/screenshots/screenshot-desktop.png",
+      "sizes": "872x1248",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/screenshots/screenshot-mobile.png",
+      "sizes": "402x1618",
+      "type": "image/png"
+    }
+  ]
+    
   }
   

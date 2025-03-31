@@ -37,32 +37,31 @@ function filtrarProfesionales(condicion) {
 
 // Mostrar profesionales
 function mostrarProfesionales(profesionales) {
+    console.log(profesionales);  // Verifica los datos de los profesionales
     const contenedor = document.querySelector(".cards__container--equipo");
-    if (!contenedor) {
-        console.error("Contenedor de tarjetas no encontrado.");
-        return;
+   
+    if (contenedor) {
+        contenedor.innerHTML = "";
+        profesionales.forEach(profesional => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+
+            card.innerHTML = `
+                <img src="${profesional.foto}" class="card__img" alt="Foto de ${profesional.nombre}">
+                <ul>
+                    <li class="card__text--nombre">${profesional.nombre}</li>
+                    <li class="card__text--especialidad">${profesional.especialidad}</li>
+                    <li class="card__text--resena">${profesional.resena}</li>
+                </ul>
+            `;
+
+            contenedor.appendChild(card);
+        });
+    } else {
+        console.log('No se encontró el contenedor');
     }
-    
-    // Limpiar el contenedor antes de agregar las nuevas tarjetas
-    contenedor.innerHTML = "";
-
-    // Generar y agregar las tarjetas
-    profesionales.forEach(profesional => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-
-        card.innerHTML = `
-            <img src="${profesional.foto}" class="card__img" alt="Foto de ${profesional.nombre}">
-            <ul>
-                <li class="card__text--nombre">${profesional.nombre}</li>
-                <li class="card__text--especialidad">${profesional.especialidad}</li>
-                <li class="card__text--resena">${profesional.resena}</li>
-            </ul>
-        `;
-
-        contenedor.appendChild(card);
-    });
 }
+
 
 // Mostrar todos los profesionales al inicio
 mostrarProfesionales(personas);
@@ -81,3 +80,15 @@ document.getElementById("btn-dermatologos").addEventListener("click", () => {
 document.getElementById("btn-todos").addEventListener("click", () => {
     mostrarProfesionales(personas); // Mostrar todos los profesionales
 });
+
+//Configurar SW
+let swLocation = "service-worker.js";
+
+
+if (navigator.serviceWorker) {
+  if (window.location.href.includes("localhost")) swLocation = "/service-worker.js"; 
+  navigator.serviceWorker.register(swLocation);
+}
+
+//Logic of web app
+console.log("SW!");
