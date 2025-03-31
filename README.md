@@ -53,6 +53,14 @@ Haz clic en "Generar informe" y espera unos segundos mientras Lighthouse analiza
 
 ---
 
+**Pruebas de Funcionamiento Offline y Validación con Lighthouse**
+Se verificó que la aplicación funcione en modo offline utilizando Lighthouse para evaluar
+el rendimiento de la PWA:
+- Se ejecutó Lighthouse para generar un informe que evalúe si la aplicación cumple
+con los criterios de PWA (instalabilidad, funcionamiento offline y rendimiento).
+- Asegúrate de que el informe refleje una implementación básica funcional de
+PWA.
+
 ### Estructura de Carpetas y Archivos
 ```bash
 
