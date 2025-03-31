@@ -38,48 +38,39 @@ self.addEventListener("install", (e) => {
   );
 });
 
-// self.addEventListener("fetch", (e) => {
-//   console.log("fetch! ", e.request);
-//   e.respondWith(
-//     caches
-//       .match(e.request)
-//       .then((res) => {
-//         return res || fetch(e.request);
-//       })
-//       .catch(console.log)
-//   );
-//   //   e.waitUntil(response);
-// });
-
-
 
 self.addEventListener("fetch", (e) => {
   console.log("fetch! ", e.request);
+
+  // Intentamos servir primero desde el caché (estrategia Cache-First)
   e.respondWith(
     caches
       .match(e.request)
-      .then((res) => {
-        // Si la solicitud está en caché, devolverla
-        if (res) {
-          return res;
+      .then((cachedResponse) => {
+        // Si el recurso está en caché, devolverlo
+        if (cachedResponse) {
+          console.log("Servido desde caché:", e.request.url);
+          return cachedResponse;
         }
 
-        // Si no está en caché, hacer la solicitud a la red
+        // Si no está en caché, hacer la solicitud a la red (fallo en caché)
         return fetch(e.request).then((networkResponse) => {
           // Verifica si la respuesta es válida para cachearla
           if (networkResponse && networkResponse.ok) {
-            // Clona la respuesta antes de usarla
+            // Clona la respuesta antes de usarla, para poder almacenarla en caché
             const clonedResponse = networkResponse.clone();
 
-            // Guardar en caché
+            // Abrir el caché y almacenar la respuesta
             caches.open(STATIC_CACHE).then((cache) => {
               cache.put(e.request, clonedResponse);
             });
           }
 
+          // Retornar la respuesta de la red
           return networkResponse;
-        });
+        }).catch(console.log);  // En caso de error, solo se registra
       })
-      .catch(console.log)
+      .catch(console.log)  // Si no se puede hacer match con el caché, registramos el error
   );
 });
+
